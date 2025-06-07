@@ -2,8 +2,7 @@ package org.parsa.grpcservicenode.service;
 
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
-import org.parsa.grpcservicenode.HelloProto;
-import org.parsa.grpcservicenode.HelloServiceGrpc;
+import org.parsa.grpcservicenode.*;
 
 @GrpcService
 public class HelloServiceImpl extends HelloServiceGrpc.HelloServiceImplBase {
