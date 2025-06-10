@@ -1,0 +1,10 @@
+﻿  ClientRest.cpp
+C:\Users\Parsa_Ef\source\repos\Project1\Project1\ClientRest.cpp(2,10): error C1083: Cannot open include file: 'httplib.h': No such file or directory
+  database.cpp
+C:\Users\Parsa_Ef\source\repos\Project1\Project1\database.h(4,10): error C1083: Cannot open include file: 'cppconn/driver.h': No such file or directory
+  (compiling source file 'database.cpp')
+  
+  main.cpp
+  util.cpp
+C:\Users\Parsa_Ef\source\repos\Project1\Project1\util.cpp(2,10): error C1083: Cannot open include file: 'openssl/evp.h': No such file or directory
+  Generating Code...
