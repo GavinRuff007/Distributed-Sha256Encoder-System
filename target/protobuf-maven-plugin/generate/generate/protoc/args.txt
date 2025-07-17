@@ -1,0 +1,9 @@
+--java_out=/Users/parsaeftekharmanesh/Desktop/Parsa/Github/Distributed-Sha256Encoder-System/target/generated-sources/protobuf
+--plugin=protoc-gen-odTM9B5qMw1A57LrsA-GsURPeqM=/Users/parsaeftekharmanesh/.m2/repository/io/grpc/protoc-gen-grpc-java/1.72.0/protoc-gen-grpc-java-1.72.0-osx-aarch_64.exe
+--odTM9B5qMw1A57LrsA-GsURPeqM_out=/Users/parsaeftekharmanesh/Desktop/Parsa/Github/Distributed-Sha256Encoder-System/target/generated-sources/protobuf
+--odTM9B5qMw1A57LrsA-GsURPeqM_opt=jakarta_omit,@generated=omit
+/Users/parsaeftekharmanesh/Desktop/Parsa/Github/Distributed-Sha256Encoder-System/src/main/proto/hello.proto
+--proto_path=/Users/parsaeftekharmanesh/Desktop/Parsa/Github/Distributed-Sha256Encoder-System/src/main/proto
+--proto_path=/Users/parsaeftekharmanesh/Desktop/Parsa/Github/Distributed-Sha256Encoder-System/target/protobuf-maven-plugin/generate/generate/archives/protobuf-java-4.30.2-nhlFiYE46YjTCgficAsyv8pqPPQ
+--proto_path=/Users/parsaeftekharmanesh/Desktop/Parsa/Github/Distributed-Sha256Encoder-System/target/protobuf-maven-plugin/generate/generate/archives/proto-google-common-protos-2.54.1-V64XFiF3AMhRu775F9_Fvbw3pvw
+--proto_path=/Users/parsaeftekharmanesh/Desktop/Parsa/Github/Distributed-Sha256Encoder-System/target/protobuf-maven-plugin/generate/generate/archives/grpc-services-1.72.0-8ZxphhU2hjTbN6YQVpurokG__VQ
