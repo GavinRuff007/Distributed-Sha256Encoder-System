@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package broadcast;
+
+// مسیر پکیج برای Go (Core)
+option go_package = "CoreBasedGoLang/proto;broadcast";
+
+// مسیر پکیج برای Java (Node)
+option java_package = "org.parsa.grpcservicenode.proto";
+option java_multiple_files = true;  // هر کلاس به‌صورت جدا ساخته شود
+
+service BroadcastService {
+  // Nodeها به این متد Subscribe می‌کنند تا Stream پیام‌ها را دریافت کنند
+  rpc Subscribe (SubscribeRequest) returns (stream BroadcastMessage);
+}
+
+message SubscribeRequest {
+  string node_id = 1;  // شناسه Node
+}
+
+message BroadcastMessage {
+  string hash = 1;       // هش یا متن رمز شده (هرچه Core بفرستد)
+  string timestamp = 2;  // زمان ارسال
+}
