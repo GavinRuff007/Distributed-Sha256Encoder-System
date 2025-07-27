@@ -1,6 +1,7 @@
 package main
 
 import (
+	"CoreBasedGoLang/broadcast"
 	"CoreBasedGoLang/database"
 	"CoreBasedGoLang/handler"
 	"fmt"
@@ -14,7 +15,7 @@ const (
 )
 
 func main() {
-
+	// بنر زیبایی که نمایش داده می‌شود
 	banner := RED + `
   _____                       ______  __ 
  |  __ \                     |  ____|/ _|
@@ -29,12 +30,16 @@ func main() {
 	}
 	fmt.Println(GREEN + "\n Secure API is Starting..." + RESET)
 
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~{Start Run Project}~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-	private := database.NewDatabase("SecureDB")
-	public := database.NewDatabase("PublicDB")
-	server := handler.NewCryptoHandler(private, public)
-	server.RegisterRoutes()
-	server.Run(":8080")
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	// دیتابیس‌های خصوصی و عمومی
+	privateDB := database.NewDatabase("SecureDB")
+	publicDB := database.NewDatabase("PublicDB")
 
+	// راه‌اندازی gRPC Broadcast Server (برای Nodeها)
+	bcastServer := &broadcast.Server{}
+	go bcastServer.Start(":50051")
+
+	// راه‌اندازی REST API (با دسترسی به bcastServer برای ارسال Broadcast)
+	apiServer := handler.NewCryptoHandler(privateDB, publicDB, bcastServer)
+	apiServer.RegisterRoutes()
+	apiServer.Run(":8080")
 }

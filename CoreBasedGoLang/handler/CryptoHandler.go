@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"CoreBasedGoLang/broadcast"
 	"CoreBasedGoLang/database"
 	"CoreBasedGoLang/util"
 	"encoding/hex"
@@ -14,13 +15,16 @@ type CryptoStruct struct {
 	router   *gin.Engine
 	database *database.Database
 	pub      *database.Database
+	bcast    *broadcast.Server // اضافه شد
 }
 
-func NewCryptoHandler(database *database.Database, pub *database.Database) *CryptoStruct {
+// حالا gRPC Server هم هنگام ساخت پاس می‌دهیم
+func NewCryptoHandler(database *database.Database, pub *database.Database, bcast *broadcast.Server) *CryptoStruct {
 	return &CryptoStruct{
 		router:   gin.Default(),
 		database: database,
 		pub:      pub,
+		bcast:    bcast,
 	}
 }
 
@@ -60,6 +64,11 @@ func (cs *CryptoStruct) encryptHandler(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": "Failed to store encrypted text"})
 		return
+	}
+
+	// *** اینجا بعد از ذخیره در PublicDB، Broadcast انجام می‌شود ***
+	if cs.bcast != nil {
+		cs.bcast.Broadcast(encrypted) // یا حتی می‌توانی id یا hash را بفرستی
 	}
 
 	c.JSON(http.StatusOK, gin.H{
