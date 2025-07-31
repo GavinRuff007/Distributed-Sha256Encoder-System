@@ -345,7 +345,7 @@ public class NodeService extends NodeServiceGrpc.NodeServiceImplBase {
             int port = Integer.parseInt(myNodeName.split("-")[1]) + 6000;
             grpcServer = ServerBuilder.forPort(port)
                     .addService(this)
-                    .addService(privateKeyReceiverService) // اگر قصد تزریق نداری
+                    .addService(privateKeyReceiverService)
                     .build()
                     .start();
             System.out.println(myNodeName + " Node gRPC server started on port " + port);
