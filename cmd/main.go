@@ -2,6 +2,7 @@ package main
 
 import (
 	"CoreBasedGoLang/broadcast"
+	"CoreBasedGoLang/consensus"
 	"CoreBasedGoLang/database"
 	"CoreBasedGoLang/handler"
 	"fmt"
@@ -15,7 +16,7 @@ const (
 )
 
 func main() {
-	// بنر زیبایی که نمایش داده می‌شود
+	// --- بنر ---
 	banner := RED + `
   _____                       ______  __ 
  |  __ \                     |  ____|/ _|
@@ -26,19 +27,18 @@ func main() {
 
 	for _, c := range banner {
 		fmt.Printf("%c", c)
-		time.Sleep(5 * time.Millisecond)
+		time.Sleep(2 * time.Millisecond)
 	}
-	fmt.Println(GREEN + "\n Secure API is Starting..." + RESET)
+	fmt.Println(GREEN + "\nDistributed Secure Core is Starting..." + RESET)
 
-	// دیتابیس‌های خصوصی و عمومی
 	privateDB := database.NewDatabase("SecureDB")
 	publicDB := database.NewDatabase("PublicDB")
 
-	// راه‌اندازی gRPC Broadcast Server (برای Nodeها)
 	bcastServer := &broadcast.Server{}
 	go bcastServer.Start(":50051")
 
-	// راه‌اندازی REST API (با دسترسی به bcastServer برای ارسال Broadcast)
+	go consensus.StartConsensusServer(":6000")
+
 	apiServer := handler.NewCryptoHandler(privateDB, publicDB, bcastServer)
 	apiServer.RegisterRoutes()
 	apiServer.Run(":8080")

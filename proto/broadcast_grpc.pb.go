@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.3
-// source: CoreBasedGoLang/proto/broadcast.proto
+// source: CoreBasedGoLang/broadcast/broadcast.proto
 
 package broadcast
 
@@ -120,5 +120,5 @@ var BroadcastService_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "CoreBasedGoLang/proto/broadcast.proto",
+	Metadata: "CoreBasedGoLang/broadcast/broadcast.proto",
 }

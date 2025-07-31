@@ -15,10 +15,15 @@ type CryptoStruct struct {
 	router   *gin.Engine
 	database *database.Database
 	pub      *database.Database
-	bcast    *broadcast.Server // اضافه شد
+	bcast    *broadcast.Server
+	email    string
 }
 
-// حالا gRPC Server هم هنگام ساخت پاس می‌دهیم
+type RequestData struct {
+	Email     string `json:"email" binding:"required,email"`
+	PlainText string `json:"plainText" binding:"required"`
+}
+
 func NewCryptoHandler(database *database.Database, pub *database.Database, bcast *broadcast.Server) *CryptoStruct {
 	return &CryptoStruct{
 		router:   gin.Default(),
@@ -38,8 +43,18 @@ func (cs *CryptoStruct) Run(addr string) {
 }
 
 func (cs *CryptoStruct) encryptHandler(c *gin.Context) {
-	data, _ := c.GetRawData()
-	plaintext := string(data)
+	//data, _ := c.GetRawData()
+	//
+
+	var requestData RequestData
+
+	if err := c.BindJSON(&requestData); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": "Invalid JSON"})
+		return
+	}
+
+	email := requestData.Email
+	plaintext := requestData.PlainText
 
 	key, err := util.GenerateAESKey()
 	if err != nil {
@@ -66,9 +81,8 @@ func (cs *CryptoStruct) encryptHandler(c *gin.Context) {
 		return
 	}
 
-	// *** اینجا بعد از ذخیره در PublicDB، Broadcast انجام می‌شود ***
 	if cs.bcast != nil {
-		cs.bcast.Broadcast(encrypted) // یا حتی می‌توانی id یا hash را بفرستی
+		cs.bcast.Broadcast(encrypted, email)
 	}
 
 	c.JSON(http.StatusOK, gin.H{

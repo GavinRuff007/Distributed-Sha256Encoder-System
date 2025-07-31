@@ -1,0 +1,6 @@
+nodes:
+  node-1: localhost:6001
+  node-2: localhost:6002
+  node-3: localhost:6003
+  node-4: localhost:6004
+  node-5: localhost:6005

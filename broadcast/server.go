@@ -1,25 +1,21 @@
 package broadcast
 
 import (
+	broadcast "CoreBasedGoLang/proto"
+	"google.golang.org/grpc"
 	"log"
 	"net"
 	"sync"
-	"time"
-
-	pb "CoreBasedGoLang/proto" // مسیر خروجی protoc
-
-	"google.golang.org/grpc"
 )
 
 type Server struct {
-	pb.UnimplementedBroadcastServiceServer
+	broadcast.UnimplementedBroadcastServiceServer
 	mu          sync.Mutex
-	subscribers []chan *pb.BroadcastMessage
+	subscribers []chan *broadcast.BroadcastMessage
 }
 
-// Subscribe: Nodeها به این متد وصل می‌شوند
-func (s *Server) Subscribe(req *pb.SubscribeRequest, stream pb.BroadcastService_SubscribeServer) error {
-	ch := make(chan *pb.BroadcastMessage, 10)
+func (s *Server) Subscribe(req *broadcast.SubscribeRequest, stream broadcast.BroadcastService_SubscribeServer) error {
+	ch := make(chan *broadcast.BroadcastMessage, 10)
 
 	s.mu.Lock()
 	s.subscribers = append(s.subscribers, ch)
@@ -38,14 +34,13 @@ func (s *Server) Subscribe(req *pb.SubscribeRequest, stream pb.BroadcastService_
 	}
 }
 
-// Broadcast: به همه Nodeها پیام بفرست
-func (s *Server) Broadcast(hash string) {
+func (s *Server) Broadcast(hash string, email string) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
-	msg := &pb.BroadcastMessage{
-		Hash:      hash,
-		Timestamp: time.Now().Format(time.RFC3339),
+	msg := &broadcast.BroadcastMessage{
+		Hash:  hash,
+		Email: email,
 	}
 	log.Printf("Broadcasting hash: %s", hash)
 	for _, sub := range s.subscribers {
@@ -53,14 +48,13 @@ func (s *Server) Broadcast(hash string) {
 	}
 }
 
-// Start: سرور gRPC را راه‌اندازی می‌کند
 func (s *Server) Start(port string) {
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	grpcServer := grpc.NewServer()
-	pb.RegisterBroadcastServiceServer(grpcServer, s)
+	broadcast.RegisterBroadcastServiceServer(grpcServer, s)
 	log.Printf("gRPC Broadcast server running on %s", port)
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)

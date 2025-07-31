@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "consensus";
+option go_package = "CoreBasedGoLang/consensus;consensus"; // همین مسیر پیشنهادی است
+package consensus;
+
+service CoreConsensusService {
+  rpc ReportLeader (LeaderMessage) returns (Ack);
+  rpc SendPrivateKey (PrivateKeyRequest) returns (PrivateKeyResponse);
+  rpc ReportVote (VoteReport) returns (Ack);
+}
+
+message LeaderMessage {
+  string leader_name = 1;
+}
+
+message Ack {
+  bool success = 1;
+}
+
+message PrivateKeyRequest {
+  string node_id = 1;
+}
+
+message PrivateKeyResponse {
+  string private_key = 1;
+}
+
+// پیام گزارش رأی جدید
+message VoteReport {
+  string voter = 1;        // اسم نود رأی‌دهنده
+  string candidate = 2;    // اسم کاندیدای رأی‌گرفته
+  int32 term = 3;          // شماره term (یا همون دور انتخابات)
+}

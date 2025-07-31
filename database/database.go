@@ -39,3 +39,10 @@ func (d *Database) StoreKeyWithID(data string, id int, table string) (int, error
 	_, err := d.db.Exec("INSERT INTO "+table+" (id, aes_key) VALUES (?, ?)", id, data)
 	return id, err
 }
+
+func (d *Database) GetLastPrivateKey(s string) (string, interface{}) {
+	row := d.db.QueryRow("SELECT aes_key FROM " + s + " ORDER BY id DESC LIMIT 1")
+	var key string
+	err := row.Scan(&key)
+	return key, err
+}

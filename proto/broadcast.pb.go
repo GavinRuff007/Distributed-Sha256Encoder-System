@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v5.29.3
-// source: CoreBasedGoLang/proto/broadcast.proto
+// source: CoreBasedGoLang/broadcast/broadcast.proto
 
 package broadcast
 
@@ -30,7 +30,7 @@ type SubscribeRequest struct {
 
 func (x *SubscribeRequest) Reset() {
 	*x = SubscribeRequest{}
-	mi := &file_CoreBasedGoLang_proto_broadcast_proto_msgTypes[0]
+	mi := &file_CoreBasedGoLang_broadcast_broadcast_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42,7 +42,7 @@ func (x *SubscribeRequest) String() string {
 func (*SubscribeRequest) ProtoMessage() {}
 
 func (x *SubscribeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_CoreBasedGoLang_proto_broadcast_proto_msgTypes[0]
+	mi := &file_CoreBasedGoLang_broadcast_broadcast_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -55,7 +55,7 @@ func (x *SubscribeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubscribeRequest.ProtoReflect.Descriptor instead.
 func (*SubscribeRequest) Descriptor() ([]byte, []int) {
-	return file_CoreBasedGoLang_proto_broadcast_proto_rawDescGZIP(), []int{0}
+	return file_CoreBasedGoLang_broadcast_broadcast_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *SubscribeRequest) GetNodeId() string {
@@ -68,14 +68,14 @@ func (x *SubscribeRequest) GetNodeId() string {
 type BroadcastMessage struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Hash          string                 `protobuf:"bytes,1,opt,name=hash,proto3" json:"hash,omitempty"`
-	Timestamp     string                 `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	Email     string                 `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *BroadcastMessage) Reset() {
 	*x = BroadcastMessage{}
-	mi := &file_CoreBasedGoLang_proto_broadcast_proto_msgTypes[1]
+	mi := &file_CoreBasedGoLang_broadcast_broadcast_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -87,7 +87,7 @@ func (x *BroadcastMessage) String() string {
 func (*BroadcastMessage) ProtoMessage() {}
 
 func (x *BroadcastMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_CoreBasedGoLang_proto_broadcast_proto_msgTypes[1]
+	mi := &file_CoreBasedGoLang_broadcast_broadcast_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -100,7 +100,7 @@ func (x *BroadcastMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BroadcastMessage.ProtoReflect.Descriptor instead.
 func (*BroadcastMessage) Descriptor() ([]byte, []int) {
-	return file_CoreBasedGoLang_proto_broadcast_proto_rawDescGZIP(), []int{1}
+	return file_CoreBasedGoLang_broadcast_broadcast_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *BroadcastMessage) GetHash() string {
@@ -112,16 +112,16 @@ func (x *BroadcastMessage) GetHash() string {
 
 func (x *BroadcastMessage) GetTimestamp() string {
 	if x != nil {
-		return x.Timestamp
+		return x.Email
 	}
 	return ""
 }
 
-var File_CoreBasedGoLang_proto_broadcast_proto protoreflect.FileDescriptor
+var File_CoreBasedGoLang_broadcast_broadcast_proto protoreflect.FileDescriptor
 
-const file_CoreBasedGoLang_proto_broadcast_proto_rawDesc = "" +
+const file_CoreBasedGoLang_broadcast_broadcast_proto_rawDesc = "" +
 	"\n" +
-	"%CoreBasedGoLang/proto/broadcast.proto\x12\tbroadcast\"+\n" +
+	")CoreBasedGoLang/broadcast/broadcast.proto\x12\tbroadcast\"+\n" +
 	"\x10SubscribeRequest\x12\x17\n" +
 	"\anode_id\x18\x01 \x01(\tR\x06nodeId\"D\n" +
 	"\x10BroadcastMessage\x12\x12\n" +
@@ -131,23 +131,23 @@ const file_CoreBasedGoLang_proto_broadcast_proto_rawDesc = "" +
 	"\tSubscribe\x12\x1b.broadcast.SubscribeRequest\x1a\x1b.broadcast.BroadcastMessage0\x01B!Z\x1fCoreBasedGoLang/proto;broadcastb\x06proto3"
 
 var (
-	file_CoreBasedGoLang_proto_broadcast_proto_rawDescOnce sync.Once
-	file_CoreBasedGoLang_proto_broadcast_proto_rawDescData []byte
+	file_CoreBasedGoLang_broadcast_broadcast_proto_rawDescOnce sync.Once
+	file_CoreBasedGoLang_broadcast_broadcast_proto_rawDescData []byte
 )
 
-func file_CoreBasedGoLang_proto_broadcast_proto_rawDescGZIP() []byte {
-	file_CoreBasedGoLang_proto_broadcast_proto_rawDescOnce.Do(func() {
-		file_CoreBasedGoLang_proto_broadcast_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_CoreBasedGoLang_proto_broadcast_proto_rawDesc), len(file_CoreBasedGoLang_proto_broadcast_proto_rawDesc)))
+func file_CoreBasedGoLang_broadcast_broadcast_proto_rawDescGZIP() []byte {
+	file_CoreBasedGoLang_broadcast_broadcast_proto_rawDescOnce.Do(func() {
+		file_CoreBasedGoLang_broadcast_broadcast_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_CoreBasedGoLang_broadcast_broadcast_proto_rawDesc), len(file_CoreBasedGoLang_broadcast_broadcast_proto_rawDesc)))
 	})
-	return file_CoreBasedGoLang_proto_broadcast_proto_rawDescData
+	return file_CoreBasedGoLang_broadcast_broadcast_proto_rawDescData
 }
 
-var file_CoreBasedGoLang_proto_broadcast_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_CoreBasedGoLang_proto_broadcast_proto_goTypes = []any{
+var file_CoreBasedGoLang_broadcast_broadcast_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_CoreBasedGoLang_broadcast_broadcast_proto_goTypes = []any{
 	(*SubscribeRequest)(nil), // 0: broadcast.SubscribeRequest
 	(*BroadcastMessage)(nil), // 1: broadcast.BroadcastMessage
 }
-var file_CoreBasedGoLang_proto_broadcast_proto_depIdxs = []int32{
+var file_CoreBasedGoLang_broadcast_broadcast_proto_depIdxs = []int32{
 	0, // 0: broadcast.BroadcastService.Subscribe:input_type -> broadcast.SubscribeRequest
 	1, // 1: broadcast.BroadcastService.Subscribe:output_type -> broadcast.BroadcastMessage
 	1, // [1:2] is the sub-list for method output_type
@@ -157,26 +157,26 @@ var file_CoreBasedGoLang_proto_broadcast_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_CoreBasedGoLang_proto_broadcast_proto_init() }
-func file_CoreBasedGoLang_proto_broadcast_proto_init() {
-	if File_CoreBasedGoLang_proto_broadcast_proto != nil {
+func init() { file_CoreBasedGoLang_broadcast_broadcast_proto_init() }
+func file_CoreBasedGoLang_broadcast_broadcast_proto_init() {
+	if File_CoreBasedGoLang_broadcast_broadcast_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_CoreBasedGoLang_proto_broadcast_proto_rawDesc), len(file_CoreBasedGoLang_proto_broadcast_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_CoreBasedGoLang_broadcast_broadcast_proto_rawDesc), len(file_CoreBasedGoLang_broadcast_broadcast_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_CoreBasedGoLang_proto_broadcast_proto_goTypes,
-		DependencyIndexes: file_CoreBasedGoLang_proto_broadcast_proto_depIdxs,
-		MessageInfos:      file_CoreBasedGoLang_proto_broadcast_proto_msgTypes,
+		GoTypes:           file_CoreBasedGoLang_broadcast_broadcast_proto_goTypes,
+		DependencyIndexes: file_CoreBasedGoLang_broadcast_broadcast_proto_depIdxs,
+		MessageInfos:      file_CoreBasedGoLang_broadcast_broadcast_proto_msgTypes,
 	}.Build()
-	File_CoreBasedGoLang_proto_broadcast_proto = out.File
-	file_CoreBasedGoLang_proto_broadcast_proto_goTypes = nil
-	file_CoreBasedGoLang_proto_broadcast_proto_depIdxs = nil
+	File_CoreBasedGoLang_broadcast_broadcast_proto = out.File
+	file_CoreBasedGoLang_broadcast_broadcast_proto_goTypes = nil
+	file_CoreBasedGoLang_broadcast_broadcast_proto_depIdxs = nil
 }
