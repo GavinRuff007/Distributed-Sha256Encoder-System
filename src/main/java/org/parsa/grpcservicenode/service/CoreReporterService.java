@@ -37,7 +37,6 @@ public class CoreReporterService {
         }
     }
 
-    // متد گزارش Vote (به Core): مقدار term را هم باید پاس بدهی!
     public void reportVoteToCore(String voterNode, String candidateNode, int term) {
         ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
                 .usePlaintext()
