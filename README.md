@@ -76,3 +76,31 @@ flowchart TD
     F --> G[gRPC Back to Core: Leader Report]
     G --> H[Core Sends PrivateKey to Leader]
     H --> I[Leader Decrypts + Sends Email]
+```
+
+
+## ⚙️ Tech Stack
+
+| Component        | Technology                     |
+|------------------|--------------------------------|
+| **Core Server**  | Go (REST API + gRPC client/server) |
+| **Node Service** | Java + Spring Boot (gRPC)      |
+| **Leader Election** | RAFT Algorithm              |
+| **Messaging**    | gRPC over HTTP/2               |
+| **Config Format**| YAML                           |
+| **Service Control** | systemd on Linux            |
+| **Databases**    | MySQL (two DBs for key separation) |
+| **Encryption**   | AES-128 (symmetric encryption) |
+| **Email Delivery** | SMTP (configurable server)   |
+
+---
+
+## 📦 Setup & Deployment
+
+> A full deployment is automated using a Bash script: `setup.sh`
+
+### 🔧 Step-by-step:
+
+1. **Make script executable** (if not already):
+   ```bash
+   chmod +x setup.sh
