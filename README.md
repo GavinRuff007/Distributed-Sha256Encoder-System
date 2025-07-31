@@ -101,6 +101,20 @@ flowchart TD
 
 ### 🔧 Step-by-step:
 
-1. **Make script executable** (if not already):
+1. **Extract file**
+
+2. **Make script executable** (if not already):
    ```bash
    chmod +x setup.sh
+   ```
+
+3. **Run script**:
+   ```bash
+   ./setup.sh
+   ```
+4. **Enter number of node you want:**
+   ```bash
+   ✅ All existing services removed.
+    🔧 How many nodes do you want? [1-20]
+   ```
+5. **Done all node create in /opt/Raftify**
