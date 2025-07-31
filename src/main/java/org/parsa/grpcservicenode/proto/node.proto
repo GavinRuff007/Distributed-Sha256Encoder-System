@@ -1,12 +1,14 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "org.parsa.grpcservicenode.proto";
-
+option java_package = "node";
 package node;
 
 service NodeService {
   rpc AnnounceReady (ReadyMessage) returns (Ack);
+  rpc AnnounceLeader (LeaderMessage) returns (Ack);
+  rpc RequestVote (VoteRequest) returns (VoteResponse);
+  rpc ExchangeCandidateInfo (CandidateInfo) returns (CandidateInfo); // متد جدید
 }
 
 message ReadyMessage {
@@ -16,4 +18,24 @@ message ReadyMessage {
 
 message Ack {
   bool success = 1;
+}
+
+message LeaderMessage {
+  string leader_name = 1;
+}
+
+message VoteRequest {
+  string candidate_name = 1;
+  int32 term = 2;
+  int32 candidate_random = 3;
+}
+
+message VoteResponse {
+  bool vote_granted = 1;
+  int32 term = 2;
+}
+
+message CandidateInfo {
+  string node_name = 1;
+  int32 random_number = 2;
 }

@@ -12,35 +12,128 @@ public final class NodeServiceGrpc {
   public static final java.lang.String SERVICE_NAME = "node.NodeService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<node.Node.ReadyMessage,
-      node.Node.Ack> getAnnounceReadyMethod;
+  private static volatile io.grpc.MethodDescriptor<node.ReadyMessage,
+      node.Ack> getAnnounceReadyMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "AnnounceReady",
-      requestType = node.Node.ReadyMessage.class,
-      responseType = node.Node.Ack.class,
+      requestType = node.ReadyMessage.class,
+      responseType = node.Ack.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<node.Node.ReadyMessage,
-      node.Node.Ack> getAnnounceReadyMethod() {
-    io.grpc.MethodDescriptor<node.Node.ReadyMessage, node.Node.Ack> getAnnounceReadyMethod;
+  public static io.grpc.MethodDescriptor<node.ReadyMessage,
+      node.Ack> getAnnounceReadyMethod() {
+    io.grpc.MethodDescriptor<node.ReadyMessage, node.Ack> getAnnounceReadyMethod;
     if ((getAnnounceReadyMethod = NodeServiceGrpc.getAnnounceReadyMethod) == null) {
       synchronized (NodeServiceGrpc.class) {
         if ((getAnnounceReadyMethod = NodeServiceGrpc.getAnnounceReadyMethod) == null) {
           NodeServiceGrpc.getAnnounceReadyMethod = getAnnounceReadyMethod =
-              io.grpc.MethodDescriptor.<node.Node.ReadyMessage, node.Node.Ack>newBuilder()
+              io.grpc.MethodDescriptor.<node.ReadyMessage, node.Ack>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AnnounceReady"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  node.Node.ReadyMessage.getDefaultInstance()))
+                  node.ReadyMessage.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  node.Node.Ack.getDefaultInstance()))
+                  node.Ack.getDefaultInstance()))
               .setSchemaDescriptor(new NodeServiceMethodDescriptorSupplier("AnnounceReady"))
               .build();
         }
       }
     }
     return getAnnounceReadyMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<node.LeaderMessage,
+      node.Ack> getAnnounceLeaderMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "AnnounceLeader",
+      requestType = node.LeaderMessage.class,
+      responseType = node.Ack.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<node.LeaderMessage,
+      node.Ack> getAnnounceLeaderMethod() {
+    io.grpc.MethodDescriptor<node.LeaderMessage, node.Ack> getAnnounceLeaderMethod;
+    if ((getAnnounceLeaderMethod = NodeServiceGrpc.getAnnounceLeaderMethod) == null) {
+      synchronized (NodeServiceGrpc.class) {
+        if ((getAnnounceLeaderMethod = NodeServiceGrpc.getAnnounceLeaderMethod) == null) {
+          NodeServiceGrpc.getAnnounceLeaderMethod = getAnnounceLeaderMethod =
+              io.grpc.MethodDescriptor.<node.LeaderMessage, node.Ack>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AnnounceLeader"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  node.LeaderMessage.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  node.Ack.getDefaultInstance()))
+              .setSchemaDescriptor(new NodeServiceMethodDescriptorSupplier("AnnounceLeader"))
+              .build();
+        }
+      }
+    }
+    return getAnnounceLeaderMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<node.VoteRequest,
+      node.VoteResponse> getRequestVoteMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RequestVote",
+      requestType = node.VoteRequest.class,
+      responseType = node.VoteResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<node.VoteRequest,
+      node.VoteResponse> getRequestVoteMethod() {
+    io.grpc.MethodDescriptor<node.VoteRequest, node.VoteResponse> getRequestVoteMethod;
+    if ((getRequestVoteMethod = NodeServiceGrpc.getRequestVoteMethod) == null) {
+      synchronized (NodeServiceGrpc.class) {
+        if ((getRequestVoteMethod = NodeServiceGrpc.getRequestVoteMethod) == null) {
+          NodeServiceGrpc.getRequestVoteMethod = getRequestVoteMethod =
+              io.grpc.MethodDescriptor.<node.VoteRequest, node.VoteResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RequestVote"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  node.VoteRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  node.VoteResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new NodeServiceMethodDescriptorSupplier("RequestVote"))
+              .build();
+        }
+      }
+    }
+    return getRequestVoteMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<node.CandidateInfo,
+      node.CandidateInfo> getExchangeCandidateInfoMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ExchangeCandidateInfo",
+      requestType = node.CandidateInfo.class,
+      responseType = node.CandidateInfo.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<node.CandidateInfo,
+      node.CandidateInfo> getExchangeCandidateInfoMethod() {
+    io.grpc.MethodDescriptor<node.CandidateInfo, node.CandidateInfo> getExchangeCandidateInfoMethod;
+    if ((getExchangeCandidateInfoMethod = NodeServiceGrpc.getExchangeCandidateInfoMethod) == null) {
+      synchronized (NodeServiceGrpc.class) {
+        if ((getExchangeCandidateInfoMethod = NodeServiceGrpc.getExchangeCandidateInfoMethod) == null) {
+          NodeServiceGrpc.getExchangeCandidateInfoMethod = getExchangeCandidateInfoMethod =
+              io.grpc.MethodDescriptor.<node.CandidateInfo, node.CandidateInfo>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ExchangeCandidateInfo"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  node.CandidateInfo.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  node.CandidateInfo.getDefaultInstance()))
+              .setSchemaDescriptor(new NodeServiceMethodDescriptorSupplier("ExchangeCandidateInfo"))
+              .build();
+        }
+      }
+    }
+    return getExchangeCandidateInfoMethod;
   }
 
   /**
@@ -108,9 +201,33 @@ public final class NodeServiceGrpc {
 
     /**
      */
-    default void announceReady(node.Node.ReadyMessage request,
-        io.grpc.stub.StreamObserver<node.Node.Ack> responseObserver) {
+    default void announceReady(node.ReadyMessage request,
+        io.grpc.stub.StreamObserver<node.Ack> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAnnounceReadyMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void announceLeader(node.LeaderMessage request,
+        io.grpc.stub.StreamObserver<node.Ack> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAnnounceLeaderMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void requestVote(node.VoteRequest request,
+        io.grpc.stub.StreamObserver<node.VoteResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRequestVoteMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * متد جدید
+     * </pre>
+     */
+    default void exchangeCandidateInfo(node.CandidateInfo request,
+        io.grpc.stub.StreamObserver<node.CandidateInfo> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getExchangeCandidateInfoMethod(), responseObserver);
     }
   }
 
@@ -143,10 +260,37 @@ public final class NodeServiceGrpc {
 
     /**
      */
-    public void announceReady(node.Node.ReadyMessage request,
-        io.grpc.stub.StreamObserver<node.Node.Ack> responseObserver) {
+    public void announceReady(node.ReadyMessage request,
+        io.grpc.stub.StreamObserver<node.Ack> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAnnounceReadyMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void announceLeader(node.LeaderMessage request,
+        io.grpc.stub.StreamObserver<node.Ack> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getAnnounceLeaderMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void requestVote(node.VoteRequest request,
+        io.grpc.stub.StreamObserver<node.VoteResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getRequestVoteMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * متد جدید
+     * </pre>
+     */
+    public void exchangeCandidateInfo(node.CandidateInfo request,
+        io.grpc.stub.StreamObserver<node.CandidateInfo> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getExchangeCandidateInfoMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -168,9 +312,33 @@ public final class NodeServiceGrpc {
 
     /**
      */
-    public node.Node.Ack announceReady(node.Node.ReadyMessage request) {
+    public node.Ack announceReady(node.ReadyMessage request) throws io.grpc.StatusException {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-              getChannel(), getAnnounceReadyMethod(), getCallOptions(), request);
+          getChannel(), getAnnounceReadyMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public node.Ack announceLeader(node.LeaderMessage request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getAnnounceLeaderMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public node.VoteResponse requestVote(node.VoteRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRequestVoteMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * متد جدید
+     * </pre>
+     */
+    public node.CandidateInfo exchangeCandidateInfo(node.CandidateInfo request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getExchangeCandidateInfoMethod(), getCallOptions(), request);
     }
   }
 
@@ -192,9 +360,33 @@ public final class NodeServiceGrpc {
 
     /**
      */
-    public node.Node.Ack announceReady(node.Node.ReadyMessage request) {
+    public node.Ack announceReady(node.ReadyMessage request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAnnounceReadyMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public node.Ack announceLeader(node.LeaderMessage request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getAnnounceLeaderMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public node.VoteResponse requestVote(node.VoteRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getRequestVoteMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * متد جدید
+     * </pre>
+     */
+    public node.CandidateInfo exchangeCandidateInfo(node.CandidateInfo request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getExchangeCandidateInfoMethod(), getCallOptions(), request);
     }
   }
 
@@ -216,14 +408,44 @@ public final class NodeServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<node.Node.Ack> announceReady(
-        node.Node.ReadyMessage request) {
+    public com.google.common.util.concurrent.ListenableFuture<node.Ack> announceReady(
+        node.ReadyMessage request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAnnounceReadyMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<node.Ack> announceLeader(
+        node.LeaderMessage request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getAnnounceLeaderMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<node.VoteResponse> requestVote(
+        node.VoteRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getRequestVoteMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * متد جدید
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<node.CandidateInfo> exchangeCandidateInfo(
+        node.CandidateInfo request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getExchangeCandidateInfoMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_ANNOUNCE_READY = 0;
+  private static final int METHODID_ANNOUNCE_LEADER = 1;
+  private static final int METHODID_REQUEST_VOTE = 2;
+  private static final int METHODID_EXCHANGE_CANDIDATE_INFO = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -243,8 +465,20 @@ public final class NodeServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_ANNOUNCE_READY:
-          serviceImpl.announceReady((node.Node.ReadyMessage) request,
-              (io.grpc.stub.StreamObserver<node.Node.Ack>) responseObserver);
+          serviceImpl.announceReady((node.ReadyMessage) request,
+              (io.grpc.stub.StreamObserver<node.Ack>) responseObserver);
+          break;
+        case METHODID_ANNOUNCE_LEADER:
+          serviceImpl.announceLeader((node.LeaderMessage) request,
+              (io.grpc.stub.StreamObserver<node.Ack>) responseObserver);
+          break;
+        case METHODID_REQUEST_VOTE:
+          serviceImpl.requestVote((node.VoteRequest) request,
+              (io.grpc.stub.StreamObserver<node.VoteResponse>) responseObserver);
+          break;
+        case METHODID_EXCHANGE_CANDIDATE_INFO:
+          serviceImpl.exchangeCandidateInfo((node.CandidateInfo) request,
+              (io.grpc.stub.StreamObserver<node.CandidateInfo>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -268,9 +502,30 @@ public final class NodeServiceGrpc {
           getAnnounceReadyMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              node.Node.ReadyMessage,
-              node.Node.Ack>(
+              node.ReadyMessage,
+              node.Ack>(
                 service, METHODID_ANNOUNCE_READY)))
+        .addMethod(
+          getAnnounceLeaderMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              node.LeaderMessage,
+              node.Ack>(
+                service, METHODID_ANNOUNCE_LEADER)))
+        .addMethod(
+          getRequestVoteMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              node.VoteRequest,
+              node.VoteResponse>(
+                service, METHODID_REQUEST_VOTE)))
+        .addMethod(
+          getExchangeCandidateInfoMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              node.CandidateInfo,
+              node.CandidateInfo>(
+                service, METHODID_EXCHANGE_CANDIDATE_INFO)))
         .build();
   }
 
@@ -320,6 +575,9 @@ public final class NodeServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new NodeServiceFileDescriptorSupplier())
               .addMethod(getAnnounceReadyMethod())
+              .addMethod(getAnnounceLeaderMethod())
+              .addMethod(getRequestVoteMethod())
+              .addMethod(getExchangeCandidateInfoMethod())
               .build();
         }
       }

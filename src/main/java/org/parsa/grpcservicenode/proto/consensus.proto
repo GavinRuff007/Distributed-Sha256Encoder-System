@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "consensus";
+option go_package = "CoreBasedGoLang/proto;consensus"; // اگر Go هم داری لازم است
+package consensus;
+
+// سرویس اصلی روی Core (برای جمع‌آوری نظر Nodeها در مورد لیدر و ...)
+
+service CoreConsensusService {
+  // هر Node به Core می‌گوید "لیدر من کیست"
+  rpc ReportLeader (LeaderMessage) returns (Ack);
+
+  // Core می‌تواند (اختیاری) کلید خصوصی را به Node بدهد
+  rpc SendPrivateKey (PrivateKeyRequest) returns (PrivateKeyResponse);
+
+  // هر Node رأی خودش را به Core گزارش می‌دهد
+  rpc ReportVote (VoteReport) returns (Ack);
+}
+
+// پیام اعلام لیدر از سمت Node به Core
+message LeaderMessage {
+  string leader_name = 1;
+}
+
+// پیام تایید ساده
+message Ack {
+  bool success = 1;
+}
+
+// درخواست کلید خصوصی (اختیاری)
+message PrivateKeyRequest {
+  string node_id = 1;
+}
+message PrivateKeyResponse {
+  string private_key = 1;
+}
+
+// پیام گزارش رأی از Node به Core
+message VoteReport {
+  string voter = 1;     // نام نودی که رأی داده
+  string candidate = 2; // نام نودی که رأی گرفته
+  int32 term = 3;       // شماره ترم
+}
