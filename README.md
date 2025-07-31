@@ -118,3 +118,63 @@ flowchart TD
     🔧 How many nodes do you want? [1-20]
    ```
 5. **Done all node create in /opt/Raftify**
+
+if you want to delete software just run delete.sh script
+
+---
+
+## 🧪 Testing the System
+
+### 1. Test the REST Encryption API
+
+Send a POST request to the Core server’s REST endpoint to encrypt a plaintext message:
+
+```bash
+curl --location 'http://<CORE_SERVER_IP>:8080/encrypt' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "email": "Parsa10007@gmail.com",
+  "plainText": "Skkkpalkam"
+}'
+```
+•	Replace <CORE_SERVER_IP> with your Core server IP or hostname.
+
+•	This request will trigger encryption, key storage, and broadcast to nodes.
+
+### 2. Verify Node Status
+
+Check if all raft-node services are running:
+
+   ```bash
+   systemctl status raft-node-1
+   systemctl status raft-node-2
+   # ... up to the number of nodes you created
+   ```
+### 3. Confirm Email Delivery
+
+Check the recipient email inbox for a message like this:
+ ```bash
+   Decrypted Information
+   Node Name: node-1
+
+   Decrypted Text: Skkkpalkam
+
+   Public Key: f410c7bb8f59a0db8d794868b0eaac81f282aae0ab20e1cd488d57bc9373fcd9
+
+  Random Value: 1745635625
+
+  Timestamp: 2025-07-31 16:56:15
+   ```
+---
+
+## 🎓 Academic Context
+
+This project is part of a Bachelor’s Final Project in Distributed Systems, designed to simulate real-world secure coordination using consensus protocols and microservice communication.
+
+---
+
+## 📬 Contact
+
+- **Author:** Parsa (پارسا)  
+- **Email:** parsa10007@gmail.com  
+- **LinkedIn/GitHub:** [Insert your links here]
