@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"CoreBasedGoLang/broadcast"
 	"CoreBasedGoLang/database"
 	"CoreBasedGoLang/util"
 	"encoding/hex"
@@ -14,13 +15,21 @@ type CryptoStruct struct {
 	router   *gin.Engine
 	database *database.Database
 	pub      *database.Database
+	bcast    *broadcast.Server
+	email    string
 }
 
-func NewCryptoHandler(database *database.Database, pub *database.Database) *CryptoStruct {
+type RequestData struct {
+	Email     string `json:"email" binding:"required,email"`
+	PlainText string `json:"plainText" binding:"required"`
+}
+
+func NewCryptoHandler(database *database.Database, pub *database.Database, bcast *broadcast.Server) *CryptoStruct {
 	return &CryptoStruct{
 		router:   gin.Default(),
 		database: database,
 		pub:      pub,
+		bcast:    bcast,
 	}
 }
 
@@ -34,8 +43,18 @@ func (cs *CryptoStruct) Run(addr string) {
 }
 
 func (cs *CryptoStruct) encryptHandler(c *gin.Context) {
-	data, _ := c.GetRawData()
-	plaintext := string(data)
+	//data, _ := c.GetRawData()
+	//
+
+	var requestData RequestData
+
+	if err := c.BindJSON(&requestData); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": "error", "message": "Invalid JSON"})
+		return
+	}
+
+	email := requestData.Email
+	plaintext := requestData.PlainText
 
 	key, err := util.GenerateAESKey()
 	if err != nil {
@@ -60,6 +79,10 @@ func (cs *CryptoStruct) encryptHandler(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"status": "error", "message": "Failed to store encrypted text"})
 		return
+	}
+
+	if cs.bcast != nil {
+		cs.bcast.Broadcast(encrypted, email)
 	}
 
 	c.JSON(http.StatusOK, gin.H{

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package broadcast;
+
+// مسیر پکیجی که کد Go در آن ساخته شود (باید مطابق ماژول باشد)
+option go_package = "CoreBasedGoLang/proto;broadcast";
+
+service BroadcastService {
+  rpc Subscribe (SubscribeRequest) returns (stream BroadcastMessage);
+}
+
+message SubscribeRequest {
+  string node_id = 1;
+}
+
+message BroadcastMessage {
+  string hash = 1;
+  string timestamp = 2;
+}

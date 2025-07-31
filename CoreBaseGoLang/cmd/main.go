@@ -1,6 +1,8 @@
 package main
 
 import (
+	"CoreBasedGoLang/broadcast"
+	"CoreBasedGoLang/consensus"
 	"CoreBasedGoLang/database"
 	"CoreBasedGoLang/handler"
 	"fmt"
@@ -14,7 +16,7 @@ const (
 )
 
 func main() {
-
+	// --- بنر ---
 	banner := RED + `
   _____                       ______  __ 
  |  __ \                     |  ____|/ _|
@@ -25,16 +27,19 @@ func main() {
 
 	for _, c := range banner {
 		fmt.Printf("%c", c)
-		time.Sleep(5 * time.Millisecond)
+		time.Sleep(2 * time.Millisecond)
 	}
-	fmt.Println(GREEN + "\n Secure API is Starting..." + RESET)
+	fmt.Println(GREEN + "\nDistributed Secure Core is Starting..." + RESET)
 
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~{Start Run Project}~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-	private := database.NewDatabase("SecureDB")
-	public := database.NewDatabase("PublicDB")
-	server := handler.NewCryptoHandler(private, public)
-	server.RegisterRoutes()
-	server.Run(":8080")
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	privateDB := database.NewDatabase("SecureDB")
+	publicDB := database.NewDatabase("PublicDB")
 
+	bcastServer := &broadcast.Server{}
+	go bcastServer.Start(":50051")
+
+	go consensus.StartConsensusServer(":6000")
+
+	apiServer := handler.NewCryptoHandler(privateDB, publicDB, bcastServer)
+	apiServer.RegisterRoutes()
+	apiServer.Run(":8080")
 }
