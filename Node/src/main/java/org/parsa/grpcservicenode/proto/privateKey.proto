@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.parsa.grpcservicenode.privateKey";
+package privatekey;
+
+service PrivateKeyService {
+  rpc ReceivePrivateKey (PrivateKeyMessage) returns (Ack);
+}
+
+message PrivateKeyMessage {
+  string private_key = 1;
+}
+message Ack {
+  bool success = 1;
+}
