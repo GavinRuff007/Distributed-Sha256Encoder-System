@@ -26,7 +26,6 @@ public class EmailService {
 
         Session session = Session.getInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                // اینجا App Password را جایگزین پسورد قبلی کنید
                 return new PasswordAuthentication("nodenotificationservice@gmail.com", "natq pzlp jkos skgq");
             }
         });
